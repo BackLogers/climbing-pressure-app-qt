@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/view-refresh.png</file>
+        <file>images/arrow.png</file>
+        <file>images/connected.png</file>
+        <file>images/disconnect.png</file>
+        <file>images/reset.png</file>
+        <file>images/hamburger.png</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
+        <file>images/record.png</file>
+        <file>images/stop.png</file>
+        <file>images/calibrate.png</file>
+        <file>images/cloud.png</file>
+        <file>images/cloudr.png</file>
+        <file>images/cloudb.png</file>
+        <file>images/cloudg.png</file>
+    </qresource>
+</RCC>
