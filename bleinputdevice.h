@@ -10,8 +10,13 @@
 #include <QFile>
 #include <QTimer>
 #include <QBluetoothLocalDevice>
-#include "inputdevice.h"
 
+#if QT_CONFIG(permissions)
+#include <QtCore/qcoreapplication.h>
+#include <QtCore/qpermissions.h>
+#endif
+
+#include "inputdevice.h"
 #include "deviceinfo.h"
 
 #define QPP_SERVICE_UUID "0000fee9-0000-1000-8000-00805f9b34fb"

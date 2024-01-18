@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     AppLogic appLogic;
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("appLogic", &appLogic);
-    const QUrl url(u"qrc:/ScaleQuick/main.qml"_qs);
+    const QUrl url(u"qrc:/ClimbingPressure/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)

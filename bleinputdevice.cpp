@@ -52,6 +52,24 @@ void BLEInputDevice::deviceScanError(QBluetoothDeviceDiscoveryAgent::Error error
 
 void BLEInputDevice::startScan()
 {
+#if QT_CONFIG(permissions)
+    //! [permissions]
+    QBluetoothPermission permission{};
+    permission.setCommunicationModes(QBluetoothPermission::Access);
+    switch (qApp->checkPermission(permission)) {
+    case Qt::PermissionStatus::Undetermined:
+        qApp->requestPermission(permission, this, &BLEInputDevice::startScan);
+        return;
+    case Qt::PermissionStatus::Denied:
+        qDebug()<< "Bluetooth permissions not granted!" ;
+        return;
+    case Qt::PermissionStatus::Granted:
+        break; // proceed to search
+    }
+    //! [permissions]
+#endif // QT_CONFIG(permissions)
+
+
     if(connected){
         stopConnection();
         connected=false;
@@ -160,7 +178,7 @@ void BLEInputDevice::serviceStateChanged(QLowEnergyService::ServiceState s)
         }
         // QppRx notify enabled
         const QLowEnergyDescriptor m_notificationDescQppRx =
-        qppRxChar.descriptor(QBluetoothUuid::DescriptorType::ClientCharacteristicConfiguration);
+            qppRxChar.descriptor(QBluetoothUuid::DescriptorType::ClientCharacteristicConfiguration);
         if (m_notificationDescQppRx.isValid()) {
             // Enable notification
             service->writeDescriptor(m_notificationDescQppRx, QByteArray::fromHex("0100"));

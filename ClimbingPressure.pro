@@ -33,3 +33,9 @@ HEADERS += \
 
 DISTFILES += \
     Graph.qml
+
+#ICON = appicon.png
+
+
+ios: QMAKE_INFO_PLIST = Info.plist
+macos: QMAKE_INFO_PLIST = Info.qmake.macos.plist
